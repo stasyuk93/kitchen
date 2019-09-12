@@ -1,0 +1,27 @@
+kitchen_db:
+    image: mysql:5.7
+    container_name: kitchen_db
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: kitchen
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
+    command: mysqld --sql_mode="STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION" --disable-partition-engine-check
+
+kitchen_php:
+    build: docker/php
+    restart: always
+    container_name: kitchen_php
+    links:
+        - kitchen_db
+    volumes:
+        - ./:/var/www/kitchen
+
+kitchen_nginx:
+    build: docker/nginx
+    restart: always
+    container_name: kitchen_nginx
+    links:
+        - kitchen_php
+    volumes_from:
+        - kitchen_php
