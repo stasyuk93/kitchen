@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,9 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('recipe.index');
 });
+
+Route::resource('recipe', 'RecipeController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
