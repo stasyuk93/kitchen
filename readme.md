@@ -9,7 +9,7 @@ Tutorial:
 7) php artisan migrate
 8) exit
 9) run command in folder project npm install && npm run --dev
-open http://127.0.0.1:800
+10) open http://127.0.0.1:800
 
 ## License
 
