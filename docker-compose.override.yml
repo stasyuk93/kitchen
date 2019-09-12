@@ -4,4 +4,4 @@ kitchen_nginx:
 
 kitchen_db:
   ports:
-    - 3036:3306
+    - 3307:3306
